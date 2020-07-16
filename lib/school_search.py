@@ -134,7 +134,11 @@ def console_input_search(dataset, force_update: bool = False) -> None:
           "Incorrect spelling will not be adjusted.")
     # Loop so that multiple searches can be submitted in quick succession.
     while True:
-        response = input("Enter search term: ").lower()
+        try:
+            response = input("Enter search term: ").lower()
+        except KeyboardInterrupt:
+            log.info("Exiting...\n")
+            break
         # Ignore empty input.
         if response == "":
             continue
