@@ -64,7 +64,9 @@ class SchoolSearchEngine:
         # Sometimes results will return with less than 3 options, if so, we want to add
         # additional options that are considered the "next-best hit"
         while len(results) < 3:
-            results.append(remaining_options.pop())
+            next_option = remaining_options.pop()
+            if next_option not in results:
+                results.append(remaining_options.pop())
         return results
 
     def phrase(self, phrase: str) -> list:
